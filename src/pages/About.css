@@ -1,85 +1,94 @@
 .about-page {
   position: relative;
-  min-height: 100vh;
-  background-color: black;
-  color: white;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
-/* 3D Clipper Container */
-.clipper-container {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 400px;
-  height: 400px;
-  transform: translate(-50%, -50%);
+/* 🎥 Background Video */
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* fills screen */
   z-index: 0;
-  pointer-events: none;
 }
 
-.loading-text {
-  color: gold;
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
-}
-
-/* Main Content */
-.container {
-  position: relative;
+/* 🌑 Overlay to darken the video */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.65); /* dark filter */
   z-index: 1;
-  padding: 3rem 2rem;
-  max-width: 900px;
-  margin: auto;
+}
+
+/* 📄 Content Container */
+.content-container {
   text-align: center;
+  padding: 80px 20px;
+  max-width: 900px;
+  z-index: 2;
+  color: #fff;
+  animation: fadeIn 1.2s ease;
 }
 
-/* Glass Box Style */
-.glass-box {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
-  padding: 1.5rem;
-  margin: 1.5rem 0;
-  backdrop-filter: blur(10px);
-  transition: 0.3s;
-}
-
-/* Titles */
 .section-title {
-  font-size: 2.5rem;
-  color: #d4af37;
-  margin-bottom: 0.5rem;
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #f8c22a;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
 }
 
 .section-subtitle {
-  color: #f0f0f0;
   font-style: italic;
-  margin-bottom: 2rem;
+  color: #e0e6f1;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
 }
 
-/* Feature Cards */
-.features {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem;
+.about-text {
+  margin-bottom: 15px;
+  line-height: 1.7;
+  color: #f1f1f1;
+  font-size: 1rem;
 }
 
-.feature-card {
-  flex: 1 1 250px;
+/* 🔗 Social Links */
+.social-links {
+  margin-top: 25px;
 }
 
-.mission {
-  margin-top: 2rem;
+.social-links a {
+  color: #f8c22a;
+  margin: 0 15px;
+  font-size: 1.8rem;
+  transition: all 0.3s ease;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .clipper-container {
-    width: 250px;
-    height: 250px;
+.social-links a:hover {
+  color: #fff;
+  transform: scale(1.1);
+}
+
+/* 🌟 Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

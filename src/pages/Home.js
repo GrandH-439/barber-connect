@@ -34,7 +34,10 @@ const Home = () => {
         }}
       ></div>
 
-      <div className="overlay" style={{ position: 'relative', zIndex: 2, padding: '40px 20px' }}>
+      <div
+        className="overlay"
+        style={{ position: 'relative', zIndex: 2, padding: '40px 20px' }}
+      >
         <section className="header" data-aos="fade-up" style={{ textAlign: 'center' }}>
           <h1 className="shop-name" data-aos="zoom-in" data-aos-delay="200">
             Welcome to Grand H
@@ -87,11 +90,13 @@ const Home = () => {
               <p className="price">R30</p>
               <p>Clean, classic male haircut.</p>
             </div>
+
             <div className="service-card" data-aos="flip-left" data-aos-delay="300">
               <h3>Cut & Dye</h3>
               <p className="price">R90</p>
               <p>Fresh cut with bold black dye.</p>
             </div>
+
             <div className="service-card" data-aos="flip-left" data-aos-delay="500">
               <h3>Chiskop</h3>
               <p className="price">R20</p>
@@ -114,10 +119,20 @@ const Home = () => {
           <p><strong>🕒</strong> 5 AM — Sunset</p>
 
           <div className="contact-buttons">
-            <a href="https://wa.me/27606975845" target="_blank" rel="noreferrer" className="whatsapp-btn">
+            <a
+              href="https://wa.me/27606975845"
+              target="_blank"
+              rel="noreferrer"
+              className="whatsapp-btn"
+            >
               <i className="fab fa-whatsapp"></i> WhatsApp
             </a>
-            <a href="https://www.youtube.com/@GrandH8" target="_blank" rel="noreferrer" className="youtube-btn">
+            <a
+              href="https://www.youtube.com/@GrandH8"
+              target="_blank"
+              rel="noreferrer"
+              className="youtube-btn"
+            >
               <i className="fab fa-youtube"></i> YouTube
             </a>
           </div>

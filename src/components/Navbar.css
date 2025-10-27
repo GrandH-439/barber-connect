@@ -1,7 +1,7 @@
 .navbar {
   background: #000;
   padding: 1rem 0;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
   position: fixed;
   width: 100%;
   top: 0;
@@ -17,13 +17,36 @@
   padding: 0 2rem;
 }
 
+/* ===== LOGO ===== */
 .nav-logo {
-  color: #d4af37;
-  font-size: 1.8rem;
-  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
   text-decoration: none;
+  font-size: 1.9rem;
+  font-weight: 700;
 }
 
+.logo-text {
+  background: linear-gradient(45deg, #ffd700, #f8c22a, #ffdf80);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 800;
+  animation: shimmer 3s infinite linear;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* ===== MENU LINKS ===== */
 .nav-menu {
   display: flex;
   list-style: none;
@@ -39,18 +62,75 @@
 }
 
 .nav-link:hover {
-  color: #d4af37;
+  color: #f8c22a;
 }
 
+/* ===== BOOK BUTTON ===== */
 .booking-btn {
-  background: #d4af37;
+  background: #f8c22a;
   color: #000 !important;
   padding: 8px 20px;
-  border-radius: 5px;
+  border-radius: 6px;
   font-weight: bold;
+  transition: 0.3s ease;
 }
 
 .booking-btn:hover {
-  background: #b8941f;
+  background: #fff;
   color: #000 !important;
+}
+
+/* ===== MOBILE MENU ===== */
+.menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  color: #f8c22a;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.97);
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 100%;
+    text-align: center;
+    padding: 1rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .nav-menu.active {
+    display: flex;
+    animation: slideDown 0.3s ease forwards;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .nav-link {
+    padding: 1rem 0;
+    width: 100%;
+    font-size: 1.1rem;
+  }
+
+  .booking-btn {
+    width: 80%;
+    margin-top: 10px;
+  }
 }
