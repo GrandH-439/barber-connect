@@ -1,61 +1,251 @@
-.home {
-  margin-top: 80px; /* Account for fixed navbar */
+/* General layout */
+.home-container {
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
 }
 
-.hero {
-  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-              url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3') center/cover;
-  height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.overlay {
+  position: relative;
+  z-index: 2;
+  padding: 40px 20px;
+}
+
+/* ===== HEADER SECTION ===== */
+.header {
   text-align: center;
-  color: white;
+  margin-top: 100px;
+  color: #fff;
 }
 
-.hero-content h1 {
-  font-size: 3.5rem;
-  margin-bottom: 1rem;
+.shop-name {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
 
-.hero-content p {
+.slogan {
   font-size: 1.3rem;
-  margin-bottom: 2rem;
-  opacity: 0.9;
+  margin: 15px 0 30px;
+  color: #f5f5f5;
 }
 
-.services-preview {
-  padding: 5rem 0;
-  background: #f8f9fa;
+.cta-button {
+  background: #ffb400;
+  color: #000;
+  padding: 12px 28px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
 }
 
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
+.cta-button:hover {
+  background: #fff;
+  color: #000;
+  transform: scale(1.05);
+}
+
+/* ===== WHY CHOOSE US SECTION ===== */
+.why-choose {
+  text-align: center;
+  margin-top: 60px;
+  padding: 20px;
+  color: #fff;
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.section-intro {
+  margin-bottom: 30px;
+  color: #f0f0f0;
+}
+
+.why-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+.why-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 20px;
+  width: 260px;
+  backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
+}
+
+.why-card:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-5px);
+}
+
+.icon-large {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #ffb400;
+}
+
+/* ===== SERVICES SECTION ===== */
+.services {
+  text-align: center;
+  padding: 40px 20px;
+  color: #fff;
+}
+
+.service-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
 }
 
 .service-card {
-  background: white;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 25px;
+  width: 220px;
+  backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
 }
 
 .service-card:hover {
+  background: rgba(255, 255, 255, 0.2);
   transform: translateY(-5px);
 }
 
 .service-card h3 {
-  color: #000;
-  margin-bottom: 1rem;
+  color: #ffb400;
+  margin-bottom: 8px;
 }
 
-.service-card .price {
-  font-size: 1.5rem;
-  color: #d4af37;
-  font-weight: bold;
-  margin-bottom: 1rem;
+.price {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* ===== ABOUT SECTION ===== */
+.about {
+  text-align: center;
+  color: #fff;
+  margin: 40px 0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  padding: 0 20px;
+}
+
+/* ===== CONTACT SECTION ===== */
+.contact {
+  text-align: center;
+  padding: 40px 20px;
+  color: #fff;
+}
+
+.contact h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.contact p {
+  margin: 8px 0;
+}
+
+.contact-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.whatsapp-btn,
+.youtube-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.whatsapp-btn {
+  background: #25d366;
+  color: #fff;
+}
+
+.whatsapp-btn:hover {
+  background: #1ebc59;
+  transform: scale(1.05);
+}
+
+.youtube-btn {
+  background: #ff0000;
+  color: #fff;
+}
+
+.youtube-btn:hover {
+  background: #cc0000;
+  transform: scale(1.05);
+}
+
+/* ===== FLOATING WHATSAPP ICON ===== */
+.floating-whatsapp {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background-color: #25d366;
+  color: white;
+  padding: 16px;
+  border-radius: 50%;
+  font-size: 1.8rem;
+  z-index: 10;
+  transition: 0.3s;
+}
+
+.floating-whatsapp:hover {
+  background-color: #1ebc59;
+  transform: scale(1.1);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .shop-name {
+    font-size: 2.2rem;
+  }
+
+  .slogan {
+    font-size: 1rem;
+  }
+
+  .service-card,
+  .why-card {
+    width: 90%;
+  }
+
+  .service-list,
+  .why-list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-button {
+    padding: 10px 22px;
+  }
 }
