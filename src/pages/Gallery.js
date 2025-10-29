@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import './Gallery.css';
 import { motion } from 'framer-motion';
 import { FaYoutube, FaInstagram } from 'react-icons/fa';
-import Lightbox from 'react-awesome-lightbox';
-import 'react-awesome-lightbox/build/style.css';
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
 
 // ✅ 2021 (8 pics)
 import cut2021_1 from '../assets/2021/cut1.jpg';
@@ -156,14 +156,13 @@ const Gallery = () => {
           )}
         </motion.div>
 
-        {/* 💡 Lightbox */}
-        {lightboxOpen && (
-          <Lightbox
-            images={currentImages.map((img) => ({ url: img }))}
-            startIndex={lightboxIndex}
-            onClose={() => setLightboxOpen(false)}
-          />
-        )}
+        {/* 💡 Lightbox (fixed version) */}
+        <Lightbox
+          open={lightboxOpen}
+          close={() => setLightboxOpen(false)}
+          index={lightboxIndex}
+          slides={currentImages.map((img) => ({ src: img }))}
+        />
 
         {/* 📈 Barber Growth Section */}
         <motion.div
