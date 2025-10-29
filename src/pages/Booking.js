@@ -20,20 +20,32 @@ const Booking = () => {
     setIsSubmitting(true);
 
     try {
-      await axios.post('http://localhost:5000/api/bookings', formData);
-      alert('✅ Booking submitted successfully! We will confirm your appointment soon.');
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        service: 'haircut',
-        date: '',
-        time: '',
-        message: ''
-      });
+      // ✅ Backend endpoint on Render
+      const response = await axios.post(
+        'https://barber-connect.onrender.com/api/bookings',
+        formData,
+        { headers: { 'Content-Type': 'application/json' } }
+      );
+
+      if (response.status === 201) {
+        alert('✅ Booking submitted successfully! We will confirm your appointment soon.');
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          service: 'haircut',
+          date: '',
+          time: '',
+          message: ''
+        });
+      }
     } catch (error) {
-      alert('❌ Error submitting booking. Please try again.');
-      console.error('Booking error:', error);
+      console.error('❌ Booking error:', error);
+      if (error.response) {
+        alert(`Error: ${error.response.data.error || 'Booking failed. Try again.'}`);
+      } else {
+        alert('❌ Could not connect to the server. Please check your internet connection.');
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -105,8 +117,8 @@ const Booking = () => {
               name="service"
               value={formData.service}
               onChange={handleChange}
-              title="Select a service type"
               required
+              title="Select a service type"
             >
               <option value="haircut">Haircut – R30</option>
               <option value="dye">Cut & Dye – R90</option>

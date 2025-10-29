@@ -7,18 +7,18 @@ const nodemailer = require('nodemailer');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
+// ===== Middleware =====
 app.use(cors());
 app.use(express.json());
 
-// MongoDB Connection
+// ===== MongoDB Connection =====
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/barberconnect';
 
 mongoose.connect(MONGODB_URI)
   .then(() => console.log('✅ Connected to MongoDB'))
   .catch(err => console.log('❌ MongoDB connection error:', err));
 
-// Booking Schema
+// ===== Booking Schema =====
 const bookingSchema = new mongoose.Schema({
   name: String,
   email: String,
@@ -32,9 +32,9 @@ const bookingSchema = new mongoose.Schema({
 
 const Booking = mongoose.model('Booking', bookingSchema);
 
-// Routes
+// ===== Routes =====
 app.get('/', (req, res) => {
-  res.json({ message: 'Barber Connect API is running!' });
+  res.json({ message: '💈 Barber Connect API is running!' });
 });
 
 // Get all bookings
@@ -53,7 +53,7 @@ app.post('/api/bookings', async (req, res) => {
     const newBooking = new Booking(req.body);
     const savedBooking = await newBooking.save();
 
-    // Send email notification
+    // ===== Send Email Notification =====
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
@@ -64,7 +64,7 @@ app.post('/api/bookings', async (req, res) => {
 
     const mailOptions = {
       from: `"Grand H Barber Shop" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER, // send to your inbox
       subject: '💈 New Booking Received',
       text: `
 New booking received:
@@ -86,13 +86,12 @@ Message: ${savedBooking.message || 'No message'}
 
     res.status(201).json(savedBooking);
   } catch (error) {
-    console.error('Error creating booking:', error);
+    console.error('❌ Error creating booking:', error);
     res.status(400).json({ error: error.message });
   }
 });
 
-// Start server
+// ===== Start Server =====
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
-
