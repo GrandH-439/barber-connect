@@ -34,7 +34,7 @@ const Booking = mongoose.model('Booking', bookingSchema);
 
 // ===== Routes =====
 app.get('/', (req, res) => {
-  res.json({ message: '💈 Barber Connect API is running!' });
+  res.json({ message: '💈 Grand H Barber Shop API is running!' });
 });
 
 // Get all bookings
@@ -47,27 +47,29 @@ app.get('/api/bookings', async (req, res) => {
   }
 });
 
-// Create new booking (with email notification)
+// ===== Create new booking (with Brevo email notification) =====
 app.post('/api/bookings', async (req, res) => {
   try {
     const newBooking = new Booking(req.body);
     const savedBooking = await newBooking.save();
 
-    // ===== Send Email Notification =====
+    // ===== Setup Brevo SMTP Transport =====
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: process.env.SMTP_HOST,
+      port: process.env.SMTP_PORT,
+      secure: false, // use TLS
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
       },
     });
 
     const mailOptions = {
-      from: `"Grand H Barber Shop" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_USER, // send to your inbox
-      subject: '💈 New Booking Received',
+      from: `"Grand H Barber Shop" <${process.env.EMAIL_FROM}>`,
+      to: process.env.EMAIL_FROM, // Send booking to your own inbox
+      subject: '💈 New Booking Received - Grand H Barber Shop',
       text: `
-New booking received:
+You have a new booking:
 
 Name: ${savedBooking.name}
 Email: ${savedBooking.email}
@@ -82,7 +84,7 @@ Message: ${savedBooking.message || 'No message'}
     };
 
     await transporter.sendMail(mailOptions);
-    console.log('📧 Email sent successfully!');
+    console.log('📧 Email sent successfully through Brevo!');
 
     res.status(201).json(savedBooking);
   } catch (error) {
