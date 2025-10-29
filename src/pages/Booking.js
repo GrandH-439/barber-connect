@@ -20,7 +20,7 @@ const Booking = () => {
     setIsSubmitting(true);
 
     try {
-      // ✅ Backend endpoint on Render
+      // ✅ Your backend hosted on Render
       const response = await axios.post(
         'https://barber-connect.onrender.com/api/bookings',
         formData,
@@ -41,7 +41,11 @@ const Booking = () => {
       }
     } catch (error) {
       console.error('❌ Booking error:', error);
-      if (error.response) {
+
+      // Handle backend connection issues (Render sleep)
+      if (error.message.includes('timeout') || error.message.includes('Network Error')) {
+        alert('⚠️ The server is waking up — please wait 30 seconds and try again.');
+      } else if (error.response) {
         alert(`Error: ${error.response.data.error || 'Booking failed. Try again.'}`);
       } else {
         alert('❌ Could not connect to the server. Please check your internet connection.');
@@ -62,7 +66,7 @@ const Booking = () => {
     <div className="booking-page">
       <div className="booking-container">
         <h1 className="booking-title">Book Your Appointment</h1>
-        <p className="booking-subtitle">Secure your time slot for a premium cut.</p>
+        <p className="booking-subtitle">Reserve your spot at Grand H Barber Shop.</p>
         <div className="underline"></div>
 
         <form onSubmit={handleSubmit} className="booking-form" aria-label="Booking form">
@@ -78,7 +82,6 @@ const Booking = () => {
               value={formData.name}
               onChange={handleChange}
               required
-              title="Enter your full name"
             />
           </div>
 
@@ -92,7 +95,6 @@ const Booking = () => {
               value={formData.email}
               onChange={handleChange}
               required
-              title="Enter your email address"
             />
           </div>
 
@@ -106,7 +108,6 @@ const Booking = () => {
               value={formData.phone}
               onChange={handleChange}
               required
-              title="Enter your phone number"
             />
           </div>
 
@@ -118,7 +119,6 @@ const Booking = () => {
               value={formData.service}
               onChange={handleChange}
               required
-              title="Select a service type"
             >
               <option value="haircut">Haircut – R30</option>
               <option value="dye">Cut & Dye – R90</option>
@@ -136,7 +136,6 @@ const Booking = () => {
               onChange={handleChange}
               required
               min={new Date().toISOString().split('T')[0]}
-              title="Choose your appointment date"
             />
           </div>
 
@@ -149,7 +148,6 @@ const Booking = () => {
               value={formData.time}
               onChange={handleChange}
               required
-              title="Select appointment time"
             />
           </div>
 
@@ -162,7 +160,6 @@ const Booking = () => {
               value={formData.message}
               onChange={handleChange}
               rows="4"
-              title="Add any special requests or notes"
             />
           </div>
 
