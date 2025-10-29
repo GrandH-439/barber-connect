@@ -1,203 +1,171 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap");
+
+body {
+  background-color: #000;
+  color: #f5f5f5;
+  font-family: "Playfair Display", serif;
+  margin: 0;
+}
+
 .home {
+  text-align: center;
+}
+
+/* HERO */
+.hero {
+  background-color: #000;
+  padding: 50px 20px; /* tightened hero height */
+  color: #e6d18a;
   position: relative;
-  width: 100%;
-  min-height: 100vh;
   overflow: hidden;
+}
+
+/* Glow around hero text */
+.hero-content {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 35px;
+  border-radius: 25px;
+  box-shadow: 0 0 45px rgba(212, 175, 55, 0.45);
+  position: relative;
+  z-index: 2;
+}
+
+.hero h1 {
+  font-size: 2.2rem;
+  letter-spacing: 2px;
   color: #fff;
+  margin-bottom: 0;
 }
 
-/* Background video */
-.home video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -1;
+.hero h2 {
+  font-size: 3.5rem;
+  color: #d4af37;
+  margin: 10px 0;
 }
 
-/* Header section */
-.header {
-  margin-top: 140px;
-  text-align: center;
-}
-
-.shop-name {
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 700;
-  color: #f8c22a;
-  line-height: 1.2;
-  text-transform: uppercase;
-}
-
-.slogan {
+.hero p {
   font-style: italic;
-  color: #dfe6f1;
-  margin-bottom: 20px;
-  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  color: #ccc;
+  margin: 0;
 }
 
-/* Cards and services */
-.service-list,
-.why-list {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  flex-wrap: wrap;
-  margin: 40px 0;
+/* Section Titles */
+section h2 {
+  color: #d4af37;
+  margin-top: 25px; /* smaller space between hero & next section */
+  font-size: 2rem;
+  letter-spacing: 1px;
 }
 
-.service-card,
-.why-card {
-  background: rgba(0, 0, 0, 0.6);
-  border-radius: 15px;
-  padding: 20px;
-  width: 260px;
-  text-align: center;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-  transition: transform 0.3s ease;
+.underline {
+  width: 90px;
+  height: 3px;
+  background-color: #d4af37;
+  margin: 10px auto 25px;
 }
 
-.service-card:hover,
-.why-card:hover {
-  transform: scale(1.05);
+/* WHY CHOOSE US */
+.why {
+  background-color: #0a0a0a;
+  padding: 30px 20px; /* tighter padding to close vertical space */
 }
 
-.service-card h3,
-.why-card h3 {
-  color: #f8c22a;
-  margin-bottom: 10px;
-  font-size: clamp(1.1rem, 3vw, 1.4rem);
+.why p {
+  color: #ccc;
+  max-width: 700px;
+  margin: 0 auto 35px;
 }
 
-.service-card p,
-.why-card p {
-  font-size: clamp(0.9rem, 2.5vw, 1rem);
-  line-height: 1.5;
-  color: #f3f3f3;
-}
-
-/* Buttons */
-.contact-buttons {
+.why-cards {
   display: flex;
   justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
 }
 
-.cta-button {
-  background: #f8c22a;
-  color: #001f3f;
-  font-weight: 600;
-  border: none;
-  border-radius: 30px;
-  padding: 12px 25px;
-  cursor: pointer;
-  transition: 0.3s;
-  font-size: clamp(0.9rem, 2.5vw, 1rem);
+.card {
+  background-color: #1a1a1a;
+  border: 1px solid #d4af37;
+  color: #d4af37;
+  width: 280px;
+  padding: 25px;
+  border-radius: 10px;
+  transition: transform 0.3s;
 }
 
-.cta-button:hover {
-  background: #fff;
-  color: #001f3f;
+.card:hover {
+  transform: translateY(-5px);
 }
 
-/* WhatsApp Button */
-.floating-whatsapp {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  background: #25d366;
-  color: #fff;
-  font-size: 2rem;
-  width: 60px;
-  height: 60px;
+/* SERVICES */
+.services {
+  background-color: #000;
+  padding: 50px 20px;
+}
+
+.service-cards {
   display: flex;
   justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  z-index: 1000;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.service-card {
+  border: 1px solid #d4af37;
+  border-radius: 10px;
+  padding: 30px;
+  width: 250px;
+  background-color: #0f0f0f;
+  transition: transform 0.3s;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+}
+
+.service-card h3 {
+  color: #d4af37;
+}
+
+.service-card h4 {
+  color: #fff;
+  font-size: 2rem;
+  margin: 10px 0;
+}
+
+/* CONTACT */
+.contact {
+  background-color: #0a0a0a;
+  padding: 60px 20px;
+}
+
+.contact p {
+  max-width: 700px;
+  margin: 0 auto 25px;
+  color: #ccc;
+}
+
+.contact-info p {
+  margin: 8px 0;
+  color: #d4af37;
+  font-weight: bold;
+}
+
+.socials a {
+  color: #d4af37;
+  margin: 0 15px;
+  font-weight: bold;
   text-decoration: none;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
-  transition: transform 0.2s ease;
+  transition: 0.3s;
 }
 
-.floating-whatsapp:hover {
-  transform: scale(1.1);
+.socials a:hover {
+  text-decoration: underline;
 }
 
-/* 📱 Professional Mobile Design */
-@media (max-width: 768px) {
-  .header {
-    margin-top: 100px;
-    padding: 0 15px;
-  }
-
-  .shop-name {
-    font-size: 2rem;
-    margin-bottom: 10px;
-  }
-
-  .slogan {
-    font-size: 1rem;
-    margin-bottom: 25px;
-  }
-
-  .service-list,
-  .why-list {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .service-card,
-  .why-card {
-    width: 90%;
-    padding: 25px 15px;
-    margin-bottom: 15px;
-    border-radius: 12px;
-  }
-
-  .service-card h3,
-  .why-card h3 {
-    font-size: 1.3rem;
-  }
-
-  .service-card p,
-  .why-card p {
-    font-size: 1rem;
-  }
-
-  .contact-buttons {
-    flex-direction: column;
-    gap: 12px;
-    align-items: center;
-  }
-
-  .cta-button {
-    width: 85%;
-    padding: 14px 0;
-    font-size: 1rem;
-    border-radius: 40px;
-  }
-
-  .floating-whatsapp {
-    bottom: 15px;
-    right: 15px;
-    width: 55px;
-    height: 55px;
-    font-size: 1.6rem;
-  }
-
-  /* Extra readability */
-  body {
-    overflow-x: hidden;
-    font-family: 'Poppins', sans-serif;
-    letter-spacing: 0.3px;
-  }
-
-  .home {
-    padding-bottom: 60px;
-  }
+footer {
+  margin-top: 30px;
+  font-size: 0.9rem;
+  color: #999;
 }

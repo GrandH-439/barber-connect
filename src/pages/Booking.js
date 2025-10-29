@@ -18,11 +18,10 @@ const Booking = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
-      const response = await axios.post('http://localhost:5000/api/bookings', formData);
+      await axios.post('http://localhost:5000/api/bookings', formData);
       alert('✅ Booking submitted successfully! We will confirm your appointment soon.');
-      // Reset form
       setFormData({
         name: '',
         email: '',
@@ -49,85 +48,120 @@ const Booking = () => {
 
   return (
     <div className="booking-page">
-      <div className="container">
-        <h1 className="section-title">Book Your Appointment</h1>
-        <form onSubmit={handleSubmit} className="booking-form">
+      <div className="booking-container">
+        <h1 className="booking-title">Book Your Appointment</h1>
+        <p className="booking-subtitle">Secure your time slot for a premium cut.</p>
+        <div className="underline"></div>
+
+        <form onSubmit={handleSubmit} className="booking-form" aria-label="Booking form">
+          <h2 className="form-heading">Reservation Details</h2>
+
           <div className="form-group">
+            <label htmlFor="name">Full Name*</label>
             <input
+              id="name"
               type="text"
               name="name"
-              placeholder="Your Full Name"
+              placeholder="Enter your full name"
               value={formData.name}
               onChange={handleChange}
               required
+              title="Enter your full name"
             />
           </div>
-          
+
           <div className="form-group">
+            <label htmlFor="email">Email*</label>
             <input
+              id="email"
               type="email"
               name="email"
-              placeholder="Your Email"
+              placeholder="Enter your email address"
               value={formData.email}
               onChange={handleChange}
               required
+              title="Enter your email address"
             />
           </div>
-          
+
           <div className="form-group">
+            <label htmlFor="phone">Phone Number*</label>
             <input
+              id="phone"
               type="tel"
               name="phone"
-              placeholder="Your Phone Number"
+              placeholder="Enter your phone number"
               value={formData.phone}
               onChange={handleChange}
               required
+              title="Enter your phone number"
             />
           </div>
-          
+
           <div className="form-group">
-            <select name="service" value={formData.service} onChange={handleChange}>
-              <option value="haircut">Haircut & Style - $30</option>
-              <option value="beard-trim">Beard Trim - $15</option>
-              <option value="full-service">Full Service - $40</option>
+            <label htmlFor="service">Select Service</label>
+            <select
+              id="service"
+              name="service"
+              value={formData.service}
+              onChange={handleChange}
+              title="Select a service type"
+              required
+            >
+              <option value="haircut">Haircut – R30</option>
+              <option value="dye">Cut & Dye – R90</option>
+              <option value="chiskop">Chiskop – R20</option>
             </select>
           </div>
-          
+
           <div className="form-group">
+            <label htmlFor="date">Date*</label>
             <input
+              id="date"
               type="date"
               name="date"
               value={formData.date}
               onChange={handleChange}
               required
               min={new Date().toISOString().split('T')[0]}
+              title="Choose your appointment date"
             />
           </div>
-          
+
           <div className="form-group">
+            <label htmlFor="time">Time*</label>
             <input
+              id="time"
               type="time"
               name="time"
               value={formData.time}
               onChange={handleChange}
               required
+              title="Select appointment time"
             />
           </div>
-          
+
           <div className="form-group">
+            <label htmlFor="message">Special Requests / Notes</label>
             <textarea
+              id="message"
               name="message"
-              placeholder="Special requests or notes..."
+              placeholder="Any notes or requests..."
               value={formData.message}
               onChange={handleChange}
               rows="4"
+              title="Add any special requests or notes"
             />
           </div>
-          
-          <button type="submit" className="cta-button" disabled={isSubmitting}>
+
+          <button type="submit" className="book-btn" disabled={isSubmitting}>
             {isSubmitting ? 'Booking...' : 'Confirm Booking'}
           </button>
         </form>
+
+        <footer className="booking-footer">
+          <p>© 2025 Grand H Barber Shop | Driven by Passion</p>
+        </footer>
       </div>
     </div>
   );

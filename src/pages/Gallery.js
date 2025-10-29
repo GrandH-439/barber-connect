@@ -5,7 +5,7 @@ import { FaYoutube, FaInstagram } from 'react-icons/fa';
 import Lightbox from 'react-awesome-lightbox';
 import 'react-awesome-lightbox/build/style.css';
 
-// ✅ Import local images
+// ✅ 2021 (8 pics)
 import cut2021_1 from '../assets/2021/cut1.jpg';
 import cut2021_2 from '../assets/2021/cut2.jpg';
 import cut2021_3 from '../assets/2021/cut3.jpg';
@@ -13,7 +13,9 @@ import cut2021_4 from '../assets/2021/cut4.jpg';
 import cut2021_5 from '../assets/2021/cut5.jpg';
 import cut2021_6 from '../assets/2021/cut6.jpg';
 import cut2021_7 from '../assets/2021/cut7.jpg';
+import cut2021_8 from '../assets/2021/cut8.jpg';
 
+// ✅ 2022 (16 pics)
 import cut2022_1 from '../assets/2022/cut1.jpg';
 import cut2022_2 from '../assets/2022/cut2.jpg';
 import cut2022_3 from '../assets/2022/cut3.jpg';
@@ -26,7 +28,28 @@ import cut2022_9 from '../assets/2022/cut9.jpg';
 import cut2022_10 from '../assets/2022/cut10.jpg';
 import cut2022_11 from '../assets/2022/cut11.jpg';
 import cut2022_12 from '../assets/2022/cut12.jpg';
+import cut2022_13 from '../assets/2022/cut13.jpg';
+import cut2022_14 from '../assets/2022/cut14.jpg';
+import cut2022_15 from '../assets/2022/cut15.jpg';
+import cut2022_16 from '../assets/2022/cut16.jpg';
 
+// ✅ 2023 (14 pics)
+import cut2023_1 from '../assets/2023/cut1.jpg';
+import cut2023_2 from '../assets/2023/cut2.jpg';
+import cut2023_3 from '../assets/2023/cut3.jpg';
+import cut2023_4 from '../assets/2023/cut4.jpg';
+import cut2023_5 from '../assets/2023/cut5.jpg';
+import cut2023_6 from '../assets/2023/cut6.jpg';
+import cut2023_7 from '../assets/2023/cut7.jpg';
+import cut2023_8 from '../assets/2023/cut8.jpg';
+import cut2023_9 from '../assets/2023/cut9.jpg';
+import cut2023_10 from '../assets/2023/cut10.jpg';
+import cut2023_11 from '../assets/2023/cut11.jpg';
+import cut2023_12 from '../assets/2023/cut12.jpg';
+import cut2023_13 from '../assets/2023/cut13.jpg';
+import cut2023_14 from '../assets/2023/cut14.jpg';
+
+// ✅ 2024 (8 pics)
 import cut2024_1 from '../assets/2024/cut1.jpg';
 import cut2024_2 from '../assets/2024/cut2.jpg';
 import cut2024_3 from '../assets/2024/cut3.jpg';
@@ -34,7 +57,9 @@ import cut2024_4 from '../assets/2024/cut4.jpg';
 import cut2024_5 from '../assets/2024/cut5.jpg';
 import cut2024_6 from '../assets/2024/cut6.jpg';
 import cut2024_7 from '../assets/2024/cut7.jpg';
+import cut2024_8 from '../assets/2024/cut8.jpg';
 
+// ✅ 2025 (1 pic)
 import cut2025_1 from '../assets/2025/cut1.jpg';
 
 const Gallery = () => {
@@ -43,19 +68,31 @@ const Gallery = () => {
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
   const galleryData = {
-    '2021': [cut2021_1, cut2021_2, cut2021_3, cut2021_4, cut2021_5, cut2021_6, cut2021_7],
-    '2022': [
-      cut2022_1, cut2022_2, cut2022_3, cut2022_4, cut2022_5, cut2022_6,
-      cut2022_7, cut2022_8, cut2022_9, cut2022_10, cut2022_11, cut2022_12
+    '2021': [
+      cut2021_1, cut2021_2, cut2021_3, cut2021_4,
+      cut2021_5, cut2021_6, cut2021_7, cut2021_8
     ],
-    '2023': [],
-    '2024': [cut2024_1, cut2024_2, cut2024_3, cut2024_4, cut2024_5, cut2024_6, cut2024_7],
+    '2022': [
+      cut2022_1, cut2022_2, cut2022_3, cut2022_4,
+      cut2022_5, cut2022_6, cut2022_7, cut2022_8,
+      cut2022_9, cut2022_10, cut2022_11, cut2022_12,
+      cut2022_13, cut2022_14, cut2022_15, cut2022_16
+    ],
+    '2023': [
+      cut2023_1, cut2023_2, cut2023_3, cut2023_4,
+      cut2023_5, cut2023_6, cut2023_7, cut2023_8,
+      cut2023_9, cut2023_10, cut2023_11, cut2023_12,
+      cut2023_13, cut2023_14
+    ],
+    '2024': [
+      cut2024_1, cut2024_2, cut2024_3, cut2024_4,
+      cut2024_5, cut2024_6, cut2024_7, cut2024_8
+    ],
     '2025': [cut2025_1],
   };
 
   const currentImages = galleryData[selectedYear] || [];
 
-  // 🎲 Pick 6 random images from all years for the cube
   const allImages = Object.values(galleryData).flat();
   const randomCubeImages = allImages.sort(() => 0.5 - Math.random()).slice(0, 6);
 

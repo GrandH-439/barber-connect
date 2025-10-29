@@ -2,25 +2,33 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+
+    <!-- ✅ Custom Favicon -->
+    <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon.png" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
+
     <meta
       name="description"
       content="GRANDH - Premium Barber Experience. Book your appointment online for haircuts, beard trims, and styling services."
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.png" />
+
+    <!-- Web App Manifest -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <title>GRANDH - Premium Barber Experience</title>
-    
+
     <style>
-      /* Loading styles */
+      /* ===== LOADING SCREEN ===== */
       .loading {
         display: flex;
         justify-content: center;
@@ -29,33 +37,48 @@
         background: #000;
         color: #d4af37;
         font-family: 'Inter', sans-serif;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .loading h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .loading h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0.25rem;
+        letter-spacing: 2px;
+      }
+
+      .loading p {
+        font-size: 1rem;
+        opacity: 0.8;
       }
     </style>
   </head>
+
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    
-    <!-- Loading screen while React loads -->
+
     <div id="loading" class="loading">
-      <div style="text-align: center;">
-        <h1 style="font-size: 2rem; margin-bottom: 1rem;">💈</h1>
-        <h2>GRANDH</h2>
-        <p>Loading...</p>
-      </div>
+      <h1>💈</h1>
+      <h2>GRANDH</h2>
+      <p>Loading...</p>
     </div>
-    
-    <!-- React app mounts here -->
+
+    <!-- ===== REACT APP MOUNTS HERE ===== -->
     <div id="root"></div>
-    
+
     <script>
-      // Hide loading screen when React app loads
+      // Hide loading screen when app finishes loading
       window.addEventListener('load', function() {
-        setTimeout(function() {
-          const loading = document.getElementById('loading');
-          if (loading) {
-            loading.style.display = 'none';
-          }
-        }, 500);
+        const loading = document.getElementById('loading');
+        if (loading) {
+          loading.style.opacity = '0';
+          setTimeout(() => (loading.style.display = 'none'), 500);
+        }
       });
     </script>
   </body>
