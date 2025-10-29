@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 // ===== MongoDB Connection =====
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/barberconnect';
+const MONGODB_URI = process.env.MONGODB_URI;
 
 mongoose.connect(MONGODB_URI)
   .then(() => console.log('✅ Connected to MongoDB'))
@@ -53,23 +53,24 @@ app.post('/api/bookings', async (req, res) => {
     const newBooking = new Booking(req.body);
     const savedBooking = await newBooking.save();
 
-    // ===== Setup Brevo SMTP Transport =====
+    // ===== Brevo SMTP Configuration =====
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
       port: process.env.SMTP_PORT,
-      secure: false, // use TLS
+      secure: false, // false for port 587
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
       },
     });
 
+    // ===== Email Content =====
     const mailOptions = {
       from: `"Grand H Barber Shop" <${process.env.EMAIL_FROM}>`,
-      to: process.env.EMAIL_FROM, // Send booking to your own inbox
+      to: process.env.EMAIL_FROM, // your inbox
       subject: '💈 New Booking Received - Grand H Barber Shop',
       text: `
-You have a new booking:
+New Booking Received!
 
 Name: ${savedBooking.name}
 Email: ${savedBooking.email}
@@ -83,17 +84,18 @@ Message: ${savedBooking.message || 'No message'}
       `,
     };
 
+    // ===== Send Email =====
     await transporter.sendMail(mailOptions);
-    console.log('📧 Email sent successfully through Brevo!');
+    console.log('📧 Email sent successfully through Brevo SMTP!');
 
     res.status(201).json(savedBooking);
   } catch (error) {
-    console.error('❌ Error creating booking:', error);
+    console.error('❌ Error creating booking or sending email:', error);
     res.status(400).json({ error: error.message });
   }
 });
 
 // ===== Start Server =====
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });
