@@ -1,0 +1,171 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap");
+
+body {
+  background-color: #000;
+  color: #f5f5f5;
+  font-family: "Playfair Display", serif;
+  margin: 0;
+}
+
+.home {
+  text-align: center;
+}
+
+/* HERO */
+.hero {
+  background-color: #000;
+  padding: 50px 20px; /* tightened hero height */
+  color: #e6d18a;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glow around hero text */
+.hero-content {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 35px;
+  border-radius: 25px;
+  box-shadow: 0 0 45px rgba(212, 175, 55, 0.45);
+  position: relative;
+  z-index: 2;
+}
+
+.hero h1 {
+  font-size: 2.2rem;
+  letter-spacing: 2px;
+  color: #fff;
+  margin-bottom: 0;
+}
+
+.hero h2 {
+  font-size: 3.5rem;
+  color: #d4af37;
+  margin: 10px 0;
+}
+
+.hero p {
+  font-style: italic;
+  color: #ccc;
+  margin: 0;
+}
+
+/* Section Titles */
+section h2 {
+  color: #d4af37;
+  margin-top: 25px; /* smaller space between hero & next section */
+  font-size: 2rem;
+  letter-spacing: 1px;
+}
+
+.underline {
+  width: 90px;
+  height: 3px;
+  background-color: #d4af37;
+  margin: 10px auto 25px;
+}
+
+/* WHY CHOOSE US */
+.why {
+  background-color: #0a0a0a;
+  padding: 30px 20px; /* tighter padding to close vertical space */
+}
+
+.why p {
+  color: #ccc;
+  max-width: 700px;
+  margin: 0 auto 35px;
+}
+
+.why-cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background-color: #1a1a1a;
+  border: 1px solid #d4af37;
+  color: #d4af37;
+  width: 280px;
+  padding: 25px;
+  border-radius: 10px;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* SERVICES */
+.services {
+  background-color: #000;
+  padding: 50px 20px;
+}
+
+.service-cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.service-card {
+  border: 1px solid #d4af37;
+  border-radius: 10px;
+  padding: 30px;
+  width: 250px;
+  background-color: #0f0f0f;
+  transition: transform 0.3s;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+}
+
+.service-card h3 {
+  color: #d4af37;
+}
+
+.service-card h4 {
+  color: #fff;
+  font-size: 2rem;
+  margin: 10px 0;
+}
+
+/* CONTACT */
+.contact {
+  background-color: #0a0a0a;
+  padding: 60px 20px;
+}
+
+.contact p {
+  max-width: 700px;
+  margin: 0 auto 25px;
+  color: #ccc;
+}
+
+.contact-info p {
+  margin: 8px 0;
+  color: #d4af37;
+  font-weight: bold;
+}
+
+.socials a {
+  color: #d4af37;
+  margin: 0 15px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.socials a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  margin-top: 30px;
+  font-size: 0.9rem;
+  color: #999;
+}

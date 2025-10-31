@@ -1,0 +1,143 @@
+.navbar {
+  background: #000;
+  padding: 1rem 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+/* ===== LOGO ===== */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  text-decoration: none;
+  font-size: 1.9rem;
+  font-weight: 700;
+}
+
+.logo-text {
+  background: linear-gradient(45deg, #ffd700, #f8c22a, #ffdf80);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 800;
+  animation: shimmer 3s infinite linear;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* ===== MENU ===== */
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  color: #f8c22a;
+}
+
+/* ===== BOOK BUTTON ===== */
+.booking-btn {
+  background: #f8c22a;
+  color: #000 !important;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.booking-btn:hover {
+  background: #fff;
+  color: #000 !important;
+}
+
+/* ===== MOBILE MENU ===== */
+.menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  color: #f8c22a;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 65px;
+    right: 15px;
+    background: rgba(0, 0, 0, 0.95);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    border-radius: 10px;
+    padding: 1rem;
+    width: 180px;
+    text-align: right;
+  }
+
+  .nav-menu.active {
+    display: flex;
+    animation: slideIn 0.3s ease forwards;
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .nav-link {
+    padding: 0.6rem 0;
+    font-size: 1rem;
+  }
+
+  .booking-btn {
+    width: 100%;
+    margin-top: 10px;
+    text-align: center;
+  }
+}
+
+/* ===== GH LOGO IMAGE ===== */
+.gh-logo {
+  width: 35px;
+  height: 35px;
+  object-fit: contain;
+}

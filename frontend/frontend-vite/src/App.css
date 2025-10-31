@@ -1,0 +1,96 @@
+/* 🌍 Global Styles */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #001f3f;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+.App {
+  text-align: center;
+}
+
+/* Navbar (unchanged) */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(0, 0, 51, 0.9);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  z-index: 1000;
+}
+
+.navbar .logo {
+  font-size: 1.8rem;
+  color: #f8c22a;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 25px;
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.navbar-links a:hover {
+  color: #f8c22a;
+}
+
+/* Footer */
+.footer {
+  background: rgba(0, 0, 51, 0.95);
+  text-align: center;
+  padding: 25px 10px;
+  color: #d0d6e1;
+  font-size: 0.9rem;
+  margin-top: 40px;
+}
+
+/* 📱 Mobile Optimization */
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 20px;
+  }
+
+  .navbar-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .navbar.active .navbar-links {
+    display: flex;
+  }
+
+  .navbar .menu-toggle {
+    display: block;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: absolute;
+    right: 25px;
+    top: 18px;
+  }
+
+  .footer {
+    font-size: 0.8rem;
+    padding: 15px 5px;
+  }
+}
