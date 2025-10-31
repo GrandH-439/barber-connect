@@ -1,11 +1,12 @@
 import mongoose from "mongoose";
 
 const bookingSchema = new mongoose.Schema({
-  name: String,
-  phone: String,
-  service: String,
-  date: String,
-  time: String,
+  name: { type: String, required: true },
+  service: { type: String, required: true },
+  date: { type: String, required: true },
+  time: { type: String, required: true },
+  createdAt: { type: Date, default: Date.now },
 });
 
-export default mongoose.model("Booking", bookingSchema);
+const Booking = mongoose.model("Booking", bookingSchema);
+export default Booking;

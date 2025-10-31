@@ -15,16 +15,21 @@ const Booking = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // ✅ Load backend URL from .env (frontend)
+  const API_BASE_URL = process.env.REACT_APP_API_URL;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      // ✅ Your backend hosted on Render
       const response = await axios.post(
-        'https://barber-connect.onrender.com/api/bookings',
+        `${API_BASE_URL}/bookings`,
         formData,
-        { headers: { 'Content-Type': 'application/json' } }
+        {
+          headers: { 'Content-Type': 'application/json' },
+          timeout: 20000 // 20s timeout for Render wake-up
+        }
       );
 
       if (response.status === 201) {
@@ -42,9 +47,8 @@ const Booking = () => {
     } catch (error) {
       console.error('❌ Booking error:', error);
 
-      // Handle backend connection issues (Render sleep)
       if (error.message.includes('timeout') || error.message.includes('Network Error')) {
-        alert('⚠️ The server is waking up — please wait 30 seconds and try again.');
+        alert('⚠️ The server might be waking up — please wait a few seconds and try again.');
       } else if (error.response) {
         alert(`Error: ${error.response.data.error || 'Booking failed. Try again.'}`);
       } else {
