@@ -17,8 +17,9 @@ const Booking = () => {
     e.preventDefault();
 
     try {
-      const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
-      const response = await axios.post(`${API_URL}/api/bookings`, formData);
+      // ✅ Use Vite environment variable
+      const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+      const response = await axios.post(`${API_URL}/bookings`, formData);
 
       alert("✅ Booking successful!");
       setFormData({ name: "", service: "", date: "", time: "" });
