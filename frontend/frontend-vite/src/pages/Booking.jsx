@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import './Booking.css';
+import React, { useState } from "react";
+import axios from "axios";
+import "./Booking.css";
 
 const Booking = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    service: 'haircut',
-    date: '',
-    time: '',
-    message: ''
+    name: "",
+    email: "",
+    phone: "",
+    service: "haircut",
+    date: "",
+    time: "",
+    message: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // ✅ Load backend URL from .env (Vite uses import.meta.env)
+  // ✅ Base backend URL from .env
   const API_BASE_URL = import.meta.env.VITE_API_URL;
 
   const handleSubmit = async (e) => {
@@ -23,29 +23,37 @@ const Booking = () => {
     setIsSubmitting(true);
 
     try {
-        const response = await axios.post(`${import.meta.env.VITE_API_URL}/bookings`, formData, { headers: { "Content-Type": "application/json" }, timeout: 20000 });
+      // ✅ Correct API endpoint
+      const response = await axios.post(
+        `${API_BASE_URL}/api/bookings`,
+        formData,
+        {
+          headers: { "Content-Type": "application/json" },
+          timeout: 20000,
+        }
+      );
 
       if (response.status === 201) {
-        alert('✅ Booking submitted successfully! We will confirm your appointment soon.');
+        alert("✅ Booking submitted successfully! We will confirm your appointment soon.");
         setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          service: 'haircut',
-          date: '',
-          time: '',
-          message: ''
+          name: "",
+          email: "",
+          phone: "",
+          service: "haircut",
+          date: "",
+          time: "",
+          message: "",
         });
       }
     } catch (error) {
-      console.error('❌ Booking error:', error);
+      console.error("❌ Booking error:", error);
 
-      if (error.message.includes('timeout') || error.message.includes('Network Error')) {
-        alert('⚠️ The server might be waking up — please wait a few seconds and try again.');
+      if (error.message.includes("timeout") || error.message.includes("Network Error")) {
+        alert("⚠️ The server might be waking up — please wait a few seconds and try again.");
       } else if (error.response) {
-        alert(`Error: ${error.response.data.error || 'Booking failed. Try again.'}`);
+        alert(`Error: ${error.response.data.message || "Booking failed. Try again."}`);
       } else {
-        alert('❌ Could not connect to the server. Please check your internet connection.');
+        alert("❌ Could not connect to the server. Please check your internet connection.");
       }
     } finally {
       setIsSubmitting(false);
@@ -55,7 +63,7 @@ const Booking = () => {
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -132,7 +140,7 @@ const Booking = () => {
               value={formData.date}
               onChange={handleChange}
               required
-              min={new Date().toISOString().split('T')[0]}
+              min={new Date().toISOString().split("T")[0]}
             />
           </div>
 
@@ -161,7 +169,7 @@ const Booking = () => {
           </div>
 
           <button type="submit" className="book-btn" disabled={isSubmitting}>
-            {isSubmitting ? 'Booking...' : 'Confirm Booking'}
+            {isSubmitting ? "Booking..." : "Confirm Booking"}
           </button>
         </form>
 
