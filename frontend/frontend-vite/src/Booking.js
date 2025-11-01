@@ -19,7 +19,7 @@ const Booking = () => {
     try {
       // ✅ Use Vite environment variable
       const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
-      const response = await axios.post(`${API_URL}/bookings`, formData);
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}`${API_URL}/bookings`, formData);
 
       alert("✅ Booking successful!");
       setFormData({ name: "", service: "", date: "", time: "" });

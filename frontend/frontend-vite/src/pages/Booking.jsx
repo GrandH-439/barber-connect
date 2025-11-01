@@ -23,14 +23,7 @@ const Booking = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await axios.post(
-        `${API_BASE_URL}/bookings`,
-        formData,
-        {
-          headers: { 'Content-Type': 'application/json' },
-          timeout: 20000 // 20s timeout for Render wake-up
-        }
-      );
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}/bookings`, formData, { headers: { "Content-Type": "application/json" }, timeout: 20000 });
 
       if (response.status === 201) {
         alert('✅ Booking submitted successfully! We will confirm your appointment soon.');
