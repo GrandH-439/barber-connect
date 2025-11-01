@@ -1,3 +1,4 @@
+cat > src/pages/Booking.jsx << 'EOF'
 import React, { useState } from "react";
 import axios from "axios";
 import "./Booking.css";
@@ -15,7 +16,7 @@ const Booking = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // ✅ Base backend URL from .env
+  // ✅ Correct API base URL (now includes /api)
   const API_BASE_URL = import.meta.env.VITE_API_URL;
 
   const handleSubmit = async (e) => {
@@ -23,9 +24,9 @@ const Booking = () => {
     setIsSubmitting(true);
 
     try {
-      // ✅ Correct API endpoint
+      // ✅ Correct route — now points to /api/bookings
       const response = await axios.post(
-        `${API_BASE_URL}/api/bookings`,
+        `${API_BASE_URL}/bookings`,
         formData,
         {
           headers: { "Content-Type": "application/json" },
@@ -47,7 +48,6 @@ const Booking = () => {
       }
     } catch (error) {
       console.error("❌ Booking error:", error);
-
       if (error.message.includes("timeout") || error.message.includes("Network Error")) {
         alert("⚠️ The server might be waking up — please wait a few seconds and try again.");
       } else if (error.response) {
@@ -182,3 +182,4 @@ const Booking = () => {
 };
 
 export default Booking;
+EOF
