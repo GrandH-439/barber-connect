@@ -19,19 +19,21 @@ mongoose
   .catch((err) => console.error("❌ MongoDB connection error:", err));
 
 // ✅ API routes
+// Supports both /api/bookings and /bookings
 app.use("/api/bookings", bookingRoutes);
+app.use("/bookings", bookingRoutes);
 
-// ✅ Base route (so you see something on Render)
+// ✅ Base route
 app.get("/", (req, res) => {
   res.send("✅ GrandH backend is live and working!");
 });
 
-// ✅ (optional) serve frontend if exists
+// ✅ (optional) serve frontend if exists (for combined deployment)
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const frontendPath = path.join(__dirname, "../frontend/build");
 
-// Uncomment below ONLY if you later deploy frontend in same repo
+// Uncomment below ONLY if deploying frontend together
 // app.use(express.static(frontendPath));
 // app.get("*", (req, res) => {
 //   res.sendFile(path.join(frontendPath, "index.html"));

@@ -6,15 +6,24 @@ const router = express.Router();
 // ✅ Create a new booking
 router.post("/", async (req, res) => {
   try {
-    const { name, service, date, time } = req.body;
+    const { name, email, phone, service, date, time, message } = req.body;
 
     // Validate input
-    if (!name || !service || !date || !time) {
-      return res.status(400).json({ message: "All fields are required" });
+    if (!name || !email || !phone || !service || !date || !time) {
+      return res.status(400).json({ message: "All required fields must be filled" });
     }
 
     // Save booking to MongoDB
-    const newBooking = new Booking({ name, service, date, time });
+    const newBooking = new Booking({
+      name,
+      email,
+      phone,
+      service,
+      date,
+      time,
+      message,
+    });
+
     await newBooking.save();
 
     res.status(201).json({
@@ -27,7 +36,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// ✅ Optional: Get all bookings (for testing)
+// ✅ Get all bookings (optional, for testing)
 router.get("/", async (req, res) => {
   try {
     const bookings = await Booking.find().sort({ createdAt: -1 });

@@ -1,4 +1,3 @@
-cat > src/pages/Booking.jsx << 'EOF'
 import React, { useState } from "react";
 import axios from "axios";
 import "./Booking.css";
@@ -16,26 +15,23 @@ const Booking = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // ✅ Correct API base URL (now includes /api)
-  const API_BASE_URL = import.meta.env.VITE_API_URL;
+  // ✅ Use Render backend URL (no extra /bookings at the end)
+  const API_BASE_URL =
+    import.meta.env.VITE_API_URL || "https://grandh-backend.onrender.com/api";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      // ✅ Correct route — now points to /api/bookings
-      const response = await axios.post(
-        `${API_BASE_URL}/bookings`,
-        formData,
-        {
-          headers: { "Content-Type": "application/json" },
-          timeout: 20000,
-        }
-      );
+      // ✅ Correct endpoint → /api/bookings
+      const response = await axios.post(`${API_BASE_URL}/bookings`, formData, {
+        headers: { "Content-Type": "application/json" },
+        timeout: 20000,
+      });
 
       if (response.status === 201) {
-        alert("✅ Booking submitted successfully! We will confirm your appointment soon.");
+        alert("✅ Booking submitted successfully! We will confirm soon.");
         setFormData({
           name: "",
           email: "",
@@ -48,12 +44,13 @@ const Booking = () => {
       }
     } catch (error) {
       console.error("❌ Booking error:", error);
+
       if (error.message.includes("timeout") || error.message.includes("Network Error")) {
-        alert("⚠️ The server might be waking up — please wait a few seconds and try again.");
+        alert("⚠️ The server might be waking up. Please try again shortly.");
       } else if (error.response) {
-        alert(`Error: ${error.response.data.message || "Booking failed. Try again."}`);
+        alert(`❌ Error: ${error.response.data.message || "Booking failed."}`);
       } else {
-        alert("❌ Could not connect to the server. Please check your internet connection.");
+        alert("❌ Could not connect to the server. Please check your connection.");
       }
     } finally {
       setIsSubmitting(false);
@@ -91,20 +88,19 @@ const Booking = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="email">Email*</label>
+            <label htmlFor="email">Email</label>
             <input
               id="email"
               type="email"
               name="email"
-              placeholder="Enter your email address"
+              placeholder="Enter your email"
               value={formData.email}
               onChange={handleChange}
-              required
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="phone">Phone Number*</label>
+            <label htmlFor="phone">Phone</label>
             <input
               id="phone"
               type="tel"
@@ -112,7 +108,6 @@ const Booking = () => {
               placeholder="Enter your phone number"
               value={formData.phone}
               onChange={handleChange}
-              required
             />
           </div>
 
@@ -157,11 +152,11 @@ const Booking = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="message">Special Requests / Notes</label>
+            <label htmlFor="message">Notes</label>
             <textarea
               id="message"
               name="message"
-              placeholder="Any notes or requests..."
+              placeholder="Any special requests?"
               value={formData.message}
               onChange={handleChange}
               rows="4"
@@ -182,4 +177,3 @@ const Booking = () => {
 };
 
 export default Booking;
-EOF
