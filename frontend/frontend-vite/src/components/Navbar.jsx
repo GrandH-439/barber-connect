@@ -45,15 +45,6 @@ const Navbar = () => {
               Gallery
             </Link>
           </li>
-          <li className="nav-item">
-            <Link
-              to="/booking"
-              className="nav-link booking-btn"
-              onClick={() => setMenuOpen(false)}
-            >
-              Book Now
-            </Link>
-          </li>
         </ul>
       </div>
     </nav>
